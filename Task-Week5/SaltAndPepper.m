@@ -1,4 +1,4 @@
-function [newImg] = SaltandPepper(img, ps, pp)
+function [newImg] = SaltAndPepper(img, ps, pp)
 [W, H] = size(img);
 newImg = img;
 numS = ps * (H * W);
