@@ -75,8 +75,9 @@ varargout{1} = handles.output;
 
 % --- Executes on button press in img.
 function img_Callback(hObject, eventdata, handles)
+global X;
 X = uigetfile('*.*');
-global image;
+global image
 image = imread(X);
 axes(handles.orginal);
 imshow(image);
@@ -87,25 +88,21 @@ global image;
 gray = rgb_to_gray(image);
 axes(handles.modified);
 imshow(gray);
-axes(handles.orginal);
-imshow(image);
-
     
 
 % --- Executes on button press in bw_img.
 function bw_img_Callback(hObject, eventdata, handles)
 global image;
-binary = rgb_to_binary(image);
+binary = g2b(image);
 axes(handles.modified);
 imshow(binary);
-axes(handles.orginal);
-imshow(image);
 
 
 % --- Executes on button press in exit.
 function exit_Callback(hObject, eventdata, handles)
-closereq();
-
+% hObject    handle to exit (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
 
 
 % --- Executes on button press in pushbutton5.
@@ -223,22 +220,16 @@ function apply_Callback(hObject, eventdata, handles)
 
 % --- Executes on button press in complement.
 function complement_Callback(hObject, eventdata, handles)
-global image;
-com = complement(image);
-axes(handles.modified);
-imshow(com);
-axes(handles.orginal);
-imshow(image);
+% hObject    handle to complement (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
 
 
 % --- Executes on button press in ft.
 function ft_Callback(hObject, eventdata, handles)
-global image;
-com = ft(image);
-axes(handles.modified);
-imshow(com);
-axes(handles.orginal);
-imshow(image);
+% hObject    handle to ft (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
 
 
 % --- Executes on button press in sub.
