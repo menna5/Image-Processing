@@ -193,12 +193,8 @@ end
 
 
 function bright_val_Callback(hObject, eventdata, handles)
-% hObject    handle to bright_val (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of bright_val as text
-%        str2double(get(hObject,'String')) returns contents of bright_val as a double
+global bright_v
+bright_v = str2double(get(handles.bright_val,'String'));
 
 
 % --- Executes during object creation, after setting all properties.
@@ -243,30 +239,42 @@ imshow(image);
 
 % --- Executes on button press in sub.
 function sub_Callback(hObject, eventdata, handles)
-% hObject    handle to sub (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+global bright_v
+bright_v = str2double(get(handles.bright_val,'String'));
+global image;
+sub = Brightness(image, bright_v, 3);
+axes(handles.modified);
+imshow(sub);
 
 
 % --- Executes on button press in div.
 function div_Callback(hObject, eventdata, handles)
-% hObject    handle to div (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+global bright_v
+bright_v = str2double(get(handles.bright_val,'String'));
+global image;
+div = Brightness(image, bright_v, 4);
+axes(handles.modified);
+imshow(div);
 
 
 % --- Executes on button press in add.
 function add_Callback(hObject, eventdata, handles)
-% hObject    handle to add (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+global bright_v
+bright_v = str2double(get(handles.bright_val,'String'));
+global image;
+add = Brightness(image, bright_v, 1);
+axes(handles.modified);
+imshow(add);
 
 
 % --- Executes on button press in multiply.
 function multiply_Callback(hObject, eventdata, handles)
-% hObject    handle to multiply (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+global bright_v
+bright_v = str2double(get(handles.bright_val,'String'));
+global image;
+multi = Brightness(image, bright_v, 2);
+axes(handles.modified);
+imshow(multi);
 
 
 
