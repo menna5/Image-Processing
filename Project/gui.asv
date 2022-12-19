@@ -438,6 +438,4 @@ function [new] = rgb_gray(img)
 [W, H, L] = size(img);
 if (L ~= 1)
     new = rgb_to_gray(img);
-else
-    new = img;
 end
