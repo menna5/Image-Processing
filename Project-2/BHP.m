@@ -1,5 +1,5 @@
 function [newImg] = BHP(img, d0, n)
-[H, W] = size(img);
+[H, W, I] = size(img);
 mask = zeros(H, W);
 for h=1:H
     for w=1:W

@@ -1,5 +1,5 @@
-function [new_image] = GHP(img, d0)
-[H, W] = size(img);
+function [newImg] = GHP(img, d0)
+[H, W, I] = size(img);
 mask = zeros(H, W);
 
 for h=1:H

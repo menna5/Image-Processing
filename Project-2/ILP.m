@@ -1,7 +1,6 @@
 function [newImg] = ILP(img, d0)
 [H, W, I] = size(img);
 mask = zeros(H, W);
-
 for h=1:H
     for w=1:W
         d = sqrt((W/2-w)^2+(H/2-h)^2);

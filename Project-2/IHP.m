@@ -1,7 +1,6 @@
 function [newImg] = IHP(img, d0)
-[H, W] = size(img);
+[H, W, I] = size(img);
 mask = zeros(H, W);
-
 for h=1:H
     for w=1:W
         d = sqrt((W/2-w)^2+(H/2-h)^2);
@@ -9,8 +8,7 @@ for h=1:H
             mask(h,w) = 1;
         else
             mask(h,w) = 0;
-        end
-            
+        end     
     end
 end
 IMG_F = fft2(img);

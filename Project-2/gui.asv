@@ -188,8 +188,12 @@ end
 
 
 function trans_value_Callback(hObject, eventdata, handles)
-global trans_v
-trans_v = str2double(get(handles.trans_value,'String'));
+% hObject    handle to trans_value (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of trans_value as text
+%        str2double(get(hObject,'String')) returns contents of trans_value as a double
 
 
 % --- Executes during object creation, after setting all properties.
@@ -402,22 +406,9 @@ function histogram_btn_Callback(hObject, eventdata, handles)
 
 % --- Executes on button press in transformation_btn.
 function transformation_btn_Callback(hObject, eventdata, handles)
-global modified_img;
-global trans_v;
-trans_v = str2double(get(handles.trans_value,'String'));
-if handles.log.Value
-    modified_img = log_transformation(modified_img, trans_v);
-    axes(handles.modified);
-    imshow(modified_img);
-elseif handles.inverse.Value
-    modified_img = inverse_log(modified_img, trans_v);
-    axes(handles.modified);
-    imshow(modified_img);
-elseif handles.gamma.Value
-    modified_img = Gamma_equeation(modified_img, trans_v);
-    axes(handles.modified);
-    imshow(modified_img);
-end
+% hObject    handle to transformation_btn (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
 
 
 % --- Executes on button press in edge_btn.
@@ -442,24 +433,20 @@ elseif handles.h_s.Value
     modified_img = sharpening_HV(modified_img, 1);
     axes(handles.modified);
     imshow(modified_img);
-elseif handles.left_d_s.Value
+elseif handles.med.Value
     modified_img = sharpening_digonal(modified_img, 1);
     axes(handles.modified);
     imshow(modified_img);
-elseif handles.right_d_s.Value
+elseif handles.idl_lpf.Value
     modified_img = sharpening_digonal(modified_img,2);
     axes(handles.modified);
     imshow(modified_img);
-elseif handles.idl_hpf.Value
-    modified_img = IHP(modified_img,8);
+elseif handles.butter_lpf.Value
+    modified_img = BLP(modified_img,80,1);
     axes(handles.modified);
     imshow(modified_img);
-elseif handles.butter_hpf.Value
-    modified_img = BHP(modified_img,8, 2);
-    axes(handles.modified);
-    imshow(modified_img);
-elseif handles.gauss_hpf.Value
-    modified_img = GHP(modified_img,8);
+elseif handles.gauss_lpf.Value
+    modified_img = GLP(modified_img,80);
     axes(handles.modified);
     imshow(modified_img);
 end
