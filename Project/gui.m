@@ -22,7 +22,7 @@ function varargout = gui(varargin)
 
 % Edit the above text to modify the response to help gui
 
-% Last Modified by GUIDE v2.5 14-Dec-2022 11:58:29
+% Last Modified by GUIDE v2.5 19-Dec-2022 14:48:07
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -77,35 +77,36 @@ varargout{1} = handles.output;
 function img_Callback(hObject, eventdata, handles)
 X = uigetfile('*.*');
 global image;
+global modified_img;
 image = imread(X);
+modified_img = image;
 axes(handles.orginal);
 imshow(image);
 
 % --- Executes on button press in g_img.
 function g_img_Callback(hObject, eventdata, handles)
 global image;
-gray = rgb_to_gray(image);
+global modified_img;
+modified_img = rgb_to_gray(image);
 axes(handles.modified);
-imshow(gray);
-axes(handles.orginal);
-imshow(image);
-
-    
+imshow(modified_img);
 
 % --- Executes on button press in bw_img.
 function bw_img_Callback(hObject, eventdata, handles)
-global image;
-binary = rgb_to_binary(image);
+global modified_img;
+rgb_gray(modified_img);
+T = 125;
+modified_img = rgb_to_binary(modified_img, T);
 axes(handles.modified);
-imshow(binary);
-axes(handles.orginal);
-imshow(image);
+imshow(modified_img);
 
-
-% --- Executes on button press in exit.
-function exit_Callback(hObject, eventdata, handles)
-closereq();
-
+% --- Executes on button press in retrieve.
+function retrieve_Callback(hObject, eventdata, handles)
+global image;
+global modified_img;
+modified_img = image;
+axes(handles.modified);
+imshow(modified_img);
 
 
 % --- Executes on button press in pushbutton5.
@@ -220,62 +221,57 @@ function apply_Callback(hObject, eventdata, handles)
 % --- Executes on button press in complement.
 function complement_Callback(hObject, eventdata, handles)
 global image;
-com = complement(image);
+global modified_img;
+modified_img = complement(image);
 axes(handles.modified);
-imshow(com);
-axes(handles.orginal);
-imshow(image);
-
+imshow(modified_img);
 
 % --- Executes on button press in ft.
 function ft_Callback(hObject, eventdata, handles)
 global image;
-com = ft(image);
+modified_img = ft(image);
 axes(handles.modified);
-imshow(com);
-axes(handles.orginal);
-imshow(image);
-
+imshow(modified_img);
 
 % --- Executes on button press in sub.
 function sub_Callback(hObject, eventdata, handles)
-global bright_v
+global bright_v;
+global modified_img;
+rgb_gray(modified_img);
 bright_v = str2double(get(handles.bright_val,'String'));
-global image;
-sub = Brightness(image, bright_v, 3);
+modified_img = Brightness(modified_img, bright_v, 3);
 axes(handles.modified);
-imshow(sub);
-
+imshow(modified_img);
 
 % --- Executes on button press in div.
 function div_Callback(hObject, eventdata, handles)
-global bright_v
+global bright_v;
+global modified_img;
+rgb_gray(modified_img);
 bright_v = str2double(get(handles.bright_val,'String'));
-global image;
-div = Brightness(image, bright_v, 4);
+modified_img = Brightness(modified_img, bright_v, 4);
 axes(handles.modified);
-imshow(div);
-
+imshow(modified_img);
 
 % --- Executes on button press in add.
 function add_Callback(hObject, eventdata, handles)
-global bright_v
+global bright_v;
+global modified_img;
+rgb_gray(modified_img);
 bright_v = str2double(get(handles.bright_val,'String'));
-global image;
-add = Brightness(image, bright_v, 1);
+modified_img = Brightness(modified_img, bright_v, 1);
 axes(handles.modified);
-imshow(add);
-
+imshow(modified_img);
 
 % --- Executes on button press in multiply.
 function multiply_Callback(hObject, eventdata, handles)
-global bright_v
+global bright_v;
+global modified_img;
+rgb_gray(modified_img);
 bright_v = str2double(get(handles.bright_val,'String'));
-global image;
-multi = Brightness(image, bright_v, 2);
+modified_img = Brightness(modified_img, bright_v, 2);
 axes(handles.modified);
-imshow(multi);
-
+imshow(modified_img);
 
 
 function ps_Callback(hObject, eventdata, handles)
@@ -389,4 +385,57 @@ function percent_CreateFcn(hObject, eventdata, handles)
 %       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in noise_btn.
+function noise_btn_Callback(hObject, eventdata, handles)
+% hObject    handle to noise_btn (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in histogram_btn.
+function histogram_btn_Callback(hObject, eventdata, handles)
+% hObject    handle to histogram_btn (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in transformation_btn.
+function transformation_btn_Callback(hObject, eventdata, handles)
+% hObject    handle to transformation_btn (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in edge_btn.
+function edge_btn_Callback(hObject, eventdata, handles)
+% hObject    handle to edge_btn (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in sharping_btn.
+function sharping_btn_Callback(hObject, eventdata, handles)
+% hObject    handle to sharping_btn (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in smoothing_btn.
+function smoothing_btn_Callback(hObject, eventdata, handles)
+% hObject    handle to smoothing_btn (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in exit.
+function exit_Callback(hObject, eventdata, handles)
+closereq();
+
+function rgb_gray(img)
+[W, H, L] = size(img);
+if (L ~= 1)
+    img = rgb_to_gray(img);
 end
